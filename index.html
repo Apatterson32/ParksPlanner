@@ -5,38 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css" integrity="sha512-KXol4x3sVoO+8ZsWPFI/r5KBVB/ssCGB5tsv2nVOKwLg33wTFP3fmnXa47FdSVIshVTgsYk/1734xSk9aFIa4A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
     <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
 
     <title>Parks Planner</title>
 </head>
 <body>
-    <div class="ui container">
-        <h3>Range</h3>
-        <div class="ui form">
-            <div class="two fields">
-            <div class="field">
-                <label>Start date</label>
-                <div class="ui calendar" id="rangestart">
-                <div class="ui input left icon">
-                    <i class="calendar icon"></i>
-                    <input type="text" placeholder="Start" class="start">
-                </div>
-                </div>
-            </div>
-            <div class="field">
-                <label>End date</label>
-                <div class="ui calendar" id="rangeend">
-                <div class="ui input left icon">
-                    <i class="calendar icon"></i>
-                    <input type="text" placeholder="End" class="end">
-                </div>
-                </div>
-            </div>
+
+    <div class="ui inverted vertical masthead center aligned segment olive-bckg">
+        <div class="ui container">
+            <div class="ui large secondary inverted pointing menu no-border">
+                <h1>Parks Planner</h1>
             </div>
         </div>
-        <br/>
-        <button class="ui button" id="pickDates">Confirm Date Range</button>
+    </div>
+    <div class="ui inverted vertical masthead center aligned segment lt-olive-bckg">
+        <div class="ui container half orange-bckg">
+            <h2>Get Started</h2>
+            <p>Start by typing the name of the park you want to visit:</p>
+            <div class="ui input focus">
+                <input type="text" placeholder="Zion">
+            </div>
+            <br/>
+            <h3>Select the date(s) of your trip:</h3>
+            <div class="ui form">
+                <div class="two fields">
+                <div class="field">
+                    <label>Start date</label>
+                    <div class="ui calendar" id="rangestart">
+                    <div class="ui input left icon">
+                        <i class="calendar icon"></i>
+                        <input type="text" placeholder="Start" class="start">
+                    </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>End date</label>
+                    <div class="ui calendar" id="rangeend">
+                    <div class="ui input left icon">
+                        <i class="calendar icon"></i>
+                        <input type="text" placeholder="End" class="end">
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <br/>
+            <button class="ui button" id="pickDates">Confirm Date Range</button>
+        </div>
     </div>
     
     <script src="./assets/javascript/script.js"></script>
