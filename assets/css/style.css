@@ -1,0 +1,24 @@
+.off-white{
+    color: rgba(255,255,255,.9) !important;
+}
+
+.lt-olive-bckg{
+    background-color: #B7C5B7 !important;
+}
+
+.orange-bckg{
+    background-color: #DDA571 !important;
+    padding: 10px !important;
+}
+
+.olive-bckg{
+    background-color: #50714A !important;
+}
+
+.no-border{
+    border: none !important;
+}
+
+.half{
+    width: 50% !important;
+}
