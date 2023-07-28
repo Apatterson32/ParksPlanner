@@ -20,3 +20,6 @@ THEN I am shown a list of local activities to explore, and buttons to save those
 
 ## References/Acknowledgements
 For the itinerary date range selector we found this example code that runs off of Semantic UI- https://jsbin.com/hubanufuva/1/edit?html,js,output
+
+## Working URL
+https://leucisticboi.github.io/ParksPlanner/
