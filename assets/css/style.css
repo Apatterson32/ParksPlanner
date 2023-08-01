@@ -1,3 +1,7 @@
+html{
+    background-color: #B7C5B7 !important;
+}
+
 .off-white{
     color: rgba(255,255,255,.9) !important;
 }
@@ -57,12 +61,20 @@
     padding-bottom: 10px !important;
 }
 
+.pd-lg{
+    padding-top: 30px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    padding-bottom: 15px !important;
+}
+
 .mg-rt.sm{
     margin-right: 10px !important;
 }
 
-@media (max-width:600px) {
-    h2.responsive {
-        font-size: 24px;
-    }
+.cropped-img{
+    width: 100vw;
+    height: 200px;
+    object-fit: cover;
+    overflow: hidden;
 }
