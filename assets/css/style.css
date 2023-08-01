@@ -22,3 +22,7 @@
 .half{
     width: 50% !important;
 }
+
+.mg-tp-sm {
+    margin-top: 10px;
+}
