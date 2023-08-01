@@ -14,3 +14,8 @@ function showDates() {
     var endDate = $('.end').val();
     console.log(startDate, endDate);
 }
+
+
+// var API Key
+var apiKey = '9dNeLq2nvcwlctGtvDnExgSlMHam78mtKPhgrnn9';
+// var for user checkbox: "do you have a campsite picked out yet"
