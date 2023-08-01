@@ -21,6 +21,8 @@ var apiKey = '9dNeLq2nvcwlctGtvDnExgSlMHam78mtKPhgrnn9';
 
 // ref to the entire CAMPGROUND LIST container
 var campContainer = document.getElementById('camp-container');
+// ref to camp listing 
+var campList = document.getElementById('camp-list');
 
 // var for user checkbox: "do you have a campsite picked out yet?"
 //var needCampHelp = 'false';
@@ -33,12 +35,12 @@ var parkCode = 'care';
 
 
 function clearCampContent() {
-  var campContentEl = document.getElementById('camp-list');
-  campContentEl.innerHTML = '';
+  campList.innerHTML = '';
 }
 
 
-// TO DO: add conditional statement based on checkbox for camp help
+// TODO : FUNCTION FOR DISPLAYING CAMPGROUND DETAILS
+
 
 function generateCampList(parkCode, apiKey) {
   // clear content if nes
@@ -58,21 +60,40 @@ function generateCampList(parkCode, apiKey) {
  })
  .then(function(data){
   console.log(data);
+  console.log(data.data[0].name); // good
   // --CAMP LISTINGS--
-  //for (let i = 0; i < array.length; i++) {
+  for (let i = 0; i < data.data.length; i++) {
+    // div class .item
+    var listItem = document.createElement('div');
+    listItem.className = 'item';
+    campList.appendChild(listItem);
     
-    // camp name
-    //var makeCampHeading = document.createElement('h5');
+    // div class .content CAMP NAME
+    var listItemContent = document.createElement('div');
+    listItemContent.className = 'left floated content mg-tp-sm';
+    listItemContent.textContent = data.data[i].name ;
+    listItem.appendChild(listItemContent);
     
     // bathroom
+
 
     //water
 
     // trash
 
     // button to show details
-  
- // }
+    var rightFloatDiv = document.createElement('div');
+    rightFloatDiv.className = 'right floated content';
+    listItem.appendChild(rightFloatDiv);
+
+    var makeDetailsArrow = document.createElement('i');
+    makeDetailsArrow.className= 'right arrow icon';
+    rightFloatDiv.appendChild(makeDetailsArrow);
+
+    // TO DO; REF TO FUNCTION TO GET DETAILS OF THAT CAMPGROUND WRAPPED IN ANCHOR EL APPENPED TO ARROW
+    var makeAnchorEl = document.createElement('a');
+    
+  }
   
  })
 }
