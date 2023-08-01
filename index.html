@@ -20,8 +20,9 @@
             </div>
         </div>
     </div>
+
     <div id="main-container" class="ui inverted vertical masthead center aligned segment lt-olive-bckg">
-        <div class="ui container half orange-bckg">
+        <div class="ui container half orange-bckg olv-bord blk-txt">
             <h2>Get Started</h2>
             <p>Start by typing the name of the park you want to visit:</p>
             <div class="ui input focus">
@@ -31,24 +32,24 @@
             <h3>Select the date(s) of your trip:</h3>
             <div class="ui form">
                 <div class="two fields">
-                <div class="field">
-                    <label>Start date</label>
-                    <div class="ui calendar" id="rangestart">
-                    <div class="ui input left icon">
-                        <i class="calendar icon"></i>
-                        <input type="text" placeholder="Start" class="start">
+                    <div class="field">
+                        <label>Start date</label>
+                        <div class="ui calendar" id="rangestart">
+                            <div class="ui input left icon">
+                                <i class="calendar icon"></i>
+                                <input type="text" placeholder="Start" class="start">
+                            </div>
+                        </div>
                     </div>
+                    <div class="field">
+                        <label>End date</label>
+                        <div class="ui calendar" id="rangeend">
+                            <div class="ui input left icon">
+                                <i class="calendar icon"></i>
+                                <input type="text" placeholder="End" class="end">
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="field">
-                    <label>End date</label>
-                    <div class="ui calendar" id="rangeend">
-                    <div class="ui input left icon">
-                        <i class="calendar icon"></i>
-                        <input type="text" placeholder="End" class="end">
-                    </div>
-                    </div>
-                </div>
                 </div>
             </div>
             <br/>
@@ -64,21 +65,76 @@
                 <label>I will find it on my own</label>
             </div>
         </div>
+
         <br/>
-        <div id="camp-container" class="ui container half orange-bckg">
+        
+        <div id="camp-container" class="ui container half orange-bckg olv-bord blk-txt">
             <h2>Campground List</h2>
             <div id="camp-list" class="ui divided list">
                 <a href="">click</a>
                 <!-- TEMPLATE FOR DISPLAY, CODE IN JS:
                     <div class="item">
                     <div class="right floated content">
-                         <div class="ui button">Add</div> 
+                         <button class="ui icon button">
+                            <i class="right arrow icon"></i>
+                        </button> 
                     </div>
-                    <div class="content">
-                        This is where a campsite's name will go :)
+                    <div class="content mg-tp-sm">
+                        This is where a campsite's name will go
                     </div>
                 -->
                 </div>
+            </div>
+        </div>
+
+        <br/>
+        
+        <div class="ui container half orange-bckg olv-bord blk-txt">
+
+            <h2>Campground Details</h2>
+            <h3 id="camp-name">Idfk lol</h3>
+
+            <div class="ui grid center aligned">
+
+                <div class="four wide column grey-bckg pd-sm mg-med">
+                    <h2>Amenities</h2>
+                    <div class="ui list">
+                        <div class="item">Trash Collection</div>
+                        <div class="item">Toilets</div>
+                        <div class="item">Internet</div>
+                        <div class="item">Host on site?</div>
+                        <div class="item">Items available for sale here:</div>
+                    </div>
+                </div>
+
+                <div class="ten wide column grey-bckg pd-sm mg-med">
+                    <h2>Reservation Info</h2>
+                    <p>
+                        Lava Point Campground is typically open May through September, as weather allows. 
+                        Situated at 7890 feet above sea level, it is off the Kolob Terrace Road, 25 miles (45 minutes) north of the town of Virgin. 
+                        It takes approximately 1 hour 20 minutes to drive to the campground from the South Entrance of Zion Canyon.
+                    </p>
+                    <h4>
+                        Regulations
+                    </h4>
+                    <p>
+                        Vehicles longer than 19 feet are not permitted on the road to the campground. 
+                        Store your food in a vehicle or a hard-sided lockable container. 
+                        Do not feed wildlife. Do not leave trash unattended. 
+                        Please dispose of trash in dumpsters. 
+                        Lava Point campground cannot be included in the itinerary of any Wilderness backpacking trips. 
+                        If you are planning a backpacking traverse hike (going from Kolob Canyons south and across Zion Canyon) you need to make reservations for each night in designated Wilderness campsites and camp areas.
+                    </p>
+                    <h4>
+                        Contacts
+                    </h4>
+                    <p>
+                        park contacts
+                    </p>
+                </div>
+
+                <button class="ui button olv-btn mg-btm-sm">I have reserved this site, save to My Campsite</button>
+
             </div>
         </div>
     </div>
