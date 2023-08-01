@@ -14,3 +14,7 @@ function showDates() {
     var endDate = $('.end').val();
     console.log(startDate, endDate);
 }
+
+$(document).ready(function(){
+  $('.ui.accordion').accordion();
+});
