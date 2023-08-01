@@ -15,6 +15,10 @@ function showDates() {
     console.log(startDate, endDate);
 }
 
+$(document).ready(function(){
+  $('.ui.accordion').accordion();
+});
+
 
 // API Key
 var apiKey = '9dNeLq2nvcwlctGtvDnExgSlMHam78mtKPhgrnn9';
