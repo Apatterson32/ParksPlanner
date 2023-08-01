@@ -2,6 +2,10 @@
     color: rgba(255,255,255,.9) !important;
 }
 
+.blk-txt{
+    color: black !important;
+}
+
 .lt-olive-bckg{
     background-color: #B7C5B7 !important;
 }
@@ -15,6 +19,20 @@
     background-color: #50714A !important;
 }
 
+.grey-bckg{
+    background-color: #D9D9D9 !important;
+}
+
+.olv-bord{
+    border:#50714A !important;
+    border-width: 4px;
+    border-style: solid !important;
+}
+
+.olv-btn{
+    background-color: #7EAF76 !important;
+}
+
 .no-border{
     border: none !important;
 }
@@ -24,5 +42,27 @@
 }
 
 .mg-tp-sm {
-    margin-top: 10px;
+    margin-top: 10px !important;
+}
+
+.mg-btm-sm{
+    margin-bottom: 10px !important;
+}
+
+.mg-med{
+    margin: 20px;
+}
+
+.pd-sm{
+    padding-bottom: 10px !important;
+}
+
+.mg-rt.sm{
+    margin-right: 10px !important;
+}
+
+@media (max-width:600px) {
+    h2.responsive {
+        font-size: 24px;
+    }
 }
