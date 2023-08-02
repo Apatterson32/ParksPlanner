@@ -58,42 +58,63 @@ $(document).on('click', '.button', function(event) {
   
 });
 
+// TODO: make function for displaying/hiding campground details div
+
 
 // TODO : FUNCTION FOR DISPLAYING CAMPGROUND DETAILS
-function getCampDetails(clickedCamp){
+function getCampDetails(clickedCamp) {
   console.log('you clicked on this camp: ' + clickedCamp);
- 
+
   //clear camp details div
- campDetailsContainer.innerHTML = '';
-  
- var campDetailsCall = 'https://developer.nps.gov/api/v1/campgrounds?parkCode=' + parkCode + '&api_key=' + apiKey;
-fetch(campDetailsCall)
-.then(function(response){
-  if (!response.ok) {
-    // TODO: we can't use alert windows. if something goes wrong with call we need another way to display it.
-    console.log('api error');
-  } else {
-    return response.json();                       
-  }
- })
- .then(function(data){
-  //console.log(data);
+  // campDetailsContainer.innerHTML = '';
 
-  // conditional statement to find correct camp name in the data and display it
- for (let i = 0; i < data.data.length; i++){
-  if (clickedCamp === data.data[i].name)
-  console.log('this camp is a match for what you clicked: ' + data.data[i].name);
+  var campDetailsCall = 'https://developer.nps.gov/api/v1/campgrounds?parkCode=' + parkCode + '&api_key=' + apiKey;
+  fetch(campDetailsCall)
+    .then(function (response) {
+      if (!response.ok) {
+        // TODO: we can't use alert windows. if something goes wrong with the call we need another way to display it.
+        console.log('api error');
+      } else {
+        return response.json();
+      }
+    })
+    .then(function (data) {
+      console.log(data);
 
-   // --CAMP DETAILS--
+      // conditional statement to find correct camp name in the data and display it
+      for (let i = 0; i < data.data.length; i++) {
+        // ref to the correct info for corresponding camp
+        // TO DO: FIX DATA I REF so it
+        var campIndex = data.data[i].name;
+        if (clickedCamp === campIndex) {
+          console.log('this camp is a match for what you clicked: ' + data.data[i].name);
 
-  
- }
+          //displaythe div when arrow is clicked
+          campDetailsContainer.style.display = 'block';
 
- });
+          // --CAMP AMENITIES--
+          // ref to amenities in the API object
+          var amenities = data.data[i].amenities;
+          console.log(amenities);
+
+          // trash notes
+          var trashNotesEl = document.getElementById('trash-notes');
+          var trashNotes = amenities.trashRecyclingCollection;
+         
+          if (trashNotes === '') {
+            trashNotesEl.textContent = 'Not available.';
+
+          } else {
+            trashNotesEl.textContent = trashNotes;
+          }
+        }
+      }
+    });
 
   // TO DO: set my campsite to local storage
   // localStorage.setItem(key, textValue);
 }
+
 
 function generateCampList(parkCode, apiKey) {
   // clear content if nes
