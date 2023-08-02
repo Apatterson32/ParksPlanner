@@ -1,11 +1,11 @@
-$('#rangestart').calendar({
-    type: 'date',
-    endCalendar: $('#rangeend')
-  });
-  $('#rangeend').calendar({
-    type: 'date',
-    startCalendar: $('#rangestart')
-  });
+// $('#rangestart').calendar({
+//     type: 'date',
+//     endCalendar: $('#rangeend')
+//   });
+//   $('#rangeend').calendar({
+//     type: 'date',
+//     startCalendar: $('#rangestart')
+//   });
 
 $('#pickDates').on('click', showDates);
 
@@ -42,15 +42,20 @@ function clearCampContent() {
   campList.innerHTML = '';
 }
 
-
-// TODO : FUNCTION FOR DISPLAYING CAMPGROUND DETAILS
-$('#camp-container').on('click', '.camp-details-btn', function(event) {
+$(document).on('click', '.button', function(event) {
+  console.log('Event listener is triggered!');
   event.preventDefault();
-  getCampDetails($(this)); // perform function on clicked element
+  var sibling = $(this).parent().siblings('.content');
+  getCampDetails(sibling);
+  // var textValue = $(this).siblings('.description').val();
+  // localStorage.setItem(key, textValue);
 });
 
+
+// TODO : FUNCTION FOR DISPLAYING CAMPGROUND DETAILS
 function getCampDetails(clickedElement){
   console.log(clickedElement);
+  // more code here
 }
 
 function generateCampList(parkCode, apiKey) {
@@ -97,18 +102,16 @@ function generateCampList(parkCode, apiKey) {
     rightFloatDiv.className = 'right floated content';
     listItem.appendChild(rightFloatDiv);
 
+    // button
+    var makeDetailsBtn = document.createElement('button');
+    makeDetailsBtn.className = 'ui icon button';
+    rightFloatDiv.appendChild(makeDetailsBtn);
+
     // arrow 
     var makeDetailsArrow = document.createElement('i');
     makeDetailsArrow.className= 'right arrow icon';
-    rightFloatDiv.appendChild(makeDetailsArrow);
+    makeDetailsBtn.appendChild(makeDetailsArrow);
 
-    // TO DO; REF TO FUNCTION TO GET DETAILS OF THAT CAMPGROUND WRAPPED IN ANCHOR EL APPENPED TO ARROW
-
-    // TO DO: GET ANOCHOR TO EXECUTE FUNCT 
-    var makeAnchorEl = document.createElement('a');
-    makeAnchorEl.className = 'camp-details-btn';
-   // makeAnchorEl.
-    makeDetailsArrow.appendChild(makeAnchorEl);
     
   }
   
