@@ -44,7 +44,14 @@ function clearCampContent() {
 
 
 // TODO : FUNCTION FOR DISPLAYING CAMPGROUND DETAILS
+$('#camp-container').on('click', '.camp-details-btn', function(event) {
+  event.preventDefault();
+  getCampDetails($(this)); // perform function on clicked element
+});
 
+function getCampDetails(clickedElement){
+  console.log(clickedElement);
+}
 
 function generateCampList(parkCode, apiKey) {
   // clear content if nes
@@ -85,17 +92,23 @@ function generateCampList(parkCode, apiKey) {
 
     // trash
 
-    // button to show details
+    // div for CAMP DETAILS icon
     var rightFloatDiv = document.createElement('div');
     rightFloatDiv.className = 'right floated content';
     listItem.appendChild(rightFloatDiv);
 
+    // arrow 
     var makeDetailsArrow = document.createElement('i');
     makeDetailsArrow.className= 'right arrow icon';
     rightFloatDiv.appendChild(makeDetailsArrow);
 
     // TO DO; REF TO FUNCTION TO GET DETAILS OF THAT CAMPGROUND WRAPPED IN ANCHOR EL APPENPED TO ARROW
+
+    // TO DO: GET ANOCHOR TO EXECUTE FUNCT 
     var makeAnchorEl = document.createElement('a');
+    makeAnchorEl.className = 'camp-details-btn';
+   // makeAnchorEl.
+    makeDetailsArrow.appendChild(makeAnchorEl);
     
   }
   
