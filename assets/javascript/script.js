@@ -84,12 +84,11 @@ function getCampDetails(clickedCamp) {
       // conditional statement to find correct camp name in the data and display it
       for (let i = 0; i < data.data.length; i++) {
         // ref to the correct info for corresponding camp
-        // TO DO: FIX DATA I REF so it
         var campIndex = data.data[i].name;
         if (clickedCamp === campIndex) {
           console.log('this camp is a match for what you clicked: ' + data.data[i].name);
 
-          //displaythe div when arrow is clicked
+          //display the div when arrow is clicked
           campDetailsContainer.style.display = 'block';
 
           // --CAMP AMENITIES--
@@ -107,6 +106,19 @@ function getCampDetails(clickedCamp) {
           } else {
             trashNotesEl.textContent = trashNotes;
           }
+          
+          // toilets
+          var toiletsEl = document.getElementById('toilet-notes');
+          var toiletNotes = amenities.toilets[0];
+          
+          toiletsEl.textContent = toiletNotes;
+          if (toiletsEl.textContent === '') {
+            toiletsEl.textContent = 'Not available';
+          }
+
+          // Internet
+          
+
         }
       }
     });
