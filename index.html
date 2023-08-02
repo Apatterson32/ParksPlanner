@@ -22,11 +22,12 @@
     </div>
 
     <br/>
+    <div id="main-container" class="ui inverted vertical masthead center aligned segment lt-olive-bckg">
         <div class="ui container half orange-bckg olv-bord blk-txt">
             <h2>Get Started</h2>
             <p>Start by typing the name of the park you want to visit:</p>
             <div class="ui input focus">
-                <input type="text" placeholder="Zion">
+                <input id="park-input" type="text" placeholder="Zion">
             </div>
             <br/>
             <h3>Select the date(s) of your trip:</h3>
@@ -56,30 +57,34 @@
             <button class="ui button" id="pickDates">Confirm Date Range</button>
             <br/>
             <div class="ui checkbox mg-tp-sm">
-                <input type="checkbox" name="find-campsite">
+                <input type="checkbox" name="find-campsite" id="find-help">
                 <label>I need help finding a campsite</label>
             </div>
             <br/>
             <div class="ui checkbox mg-tp-sm">
-                <input type="checkbox" name="find-campsite">
+                <input type="checkbox" name="find-campsite" id="find-on-my-own">
                 <label>I will find it on my own</label>
             </div>
         </div>
 
         <br/>
         
-        <div class="ui container half orange-bckg olv-bord blk-txt">
+        <div id="camp-container" class="ui container half orange-bckg olv-bord blk-txt">
             <h2>Campground List</h2>
-            <div class="ui divided list">
-                <div class="item">
+            <div id="camp-list" class="ui divided list">
+                <!-- TEMPLATE FOR DISPLAY, CODE IN JS: -->
+                    <div class="item">
                     <div class="right floated content">
-                        <button class="ui icon button">
-                            <i class="right arrow icon"></i>
-                        </button>
+                         <button class="ui icon button">
+                            <i class="right arrow icon">
+                                <a href="#"></a>
+                            </i>
+                        </button> 
                     </div>
                     <div class="content mg-tp-sm">
                         This is where a campsite's name will go
                     </div>
+                
                 </div>
             </div>
         </div>
@@ -138,8 +143,11 @@
         <br/>
 
     </div>
-    
-    <script src="./assets/javascript/script.js"></script>
+    <!--TO DO: calendar funct is broken. its currently commented out in script.js-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js" integrity="sha512-Xo0Jh8MsOn72LGV8kU5LsclG7SUzJsWGhXbWcYs2MAmChkQzwiW/yTQwdJ8w6UA9C6EVG18GHb/TrYpYCjyAQw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="./assets/javascript/script.js"></script>
+    
 </body>
 </html>
