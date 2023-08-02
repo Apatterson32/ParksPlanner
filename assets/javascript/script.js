@@ -27,6 +27,8 @@ var apiKey = '9dNeLq2nvcwlctGtvDnExgSlMHam78mtKPhgrnn9';
 var campContainer = document.getElementById('camp-container');
 // ref to camp listing 
 var campList = document.getElementById('camp-list');
+//ref to camp details container
+var campDetailsContainer = document.getElementById('camp-details-container');
 
 // var for user checkbox: "do you have a campsite picked out yet?"
 //var needCampHelp = 'false';
@@ -43,19 +45,54 @@ function clearCampContent() {
 }
 
 $(document).on('click', '.button', function(event) {
-  console.log('Event listener is triggered!');
   event.preventDefault();
+  // ref to clicked arrow's sibling object
   var sibling = $(this).parent().siblings('.content');
-  getCampDetails(sibling);
+   //console.log(sibling);
+
+  // ref to clicked arrow's respective camp name
+  var campName = sibling[0].innerHTML;
+  // pass camp name to display camp details function
+  getCampDetails(campName);
   // var textValue = $(this).siblings('.description').val();
-  // localStorage.setItem(key, textValue);
+  
 });
 
 
 // TODO : FUNCTION FOR DISPLAYING CAMPGROUND DETAILS
-function getCampDetails(clickedElement){
-  console.log(clickedElement);
-  // more code here
+function getCampDetails(clickedCamp){
+  console.log('you clicked on this camp: ' + clickedCamp);
+ 
+  //clear camp details div
+ campDetailsContainer.innerHTML = '';
+  
+ var campDetailsCall = 'https://developer.nps.gov/api/v1/campgrounds?parkCode=' + parkCode + '&api_key=' + apiKey;
+fetch(campDetailsCall)
+.then(function(response){
+  if (!response.ok) {
+    // TODO: we can't use alert windows. if something goes wrong with call we need another way to display it.
+    console.log('api error');
+  } else {
+    return response.json();                       
+  }
+ })
+ .then(function(data){
+  //console.log(data);
+
+  // conditional statement to find correct camp name in the data and display it
+ for (let i = 0; i < data.data.length; i++){
+  if (clickedCamp === data.data[i].name)
+  console.log('this camp is a match for what you clicked: ' + data.data[i].name);
+
+   // --CAMP DETAILS--
+
+  
+ }
+
+ });
+
+  // TO DO: set my campsite to local storage
+  // localStorage.setItem(key, textValue);
 }
 
 function generateCampList(parkCode, apiKey) {
@@ -75,8 +112,8 @@ function generateCampList(parkCode, apiKey) {
   }
  })
  .then(function(data){
-  console.log(data);
-  console.log(data.data[0].name); // good
+  //console.log(data);
+  //console.log(data.data[0].name); // good
   // --CAMP LISTINGS--
   for (let i = 0; i < data.data.length; i++) {
     // div class .item
