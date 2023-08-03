@@ -141,6 +141,9 @@ function getCampDetails(clickedCamp) {
           }
 
           // camp name on details page
+          var campNameSubHead = document.getElementById('camp-detail-name');
+          var campTitle = data.data[i].name;
+          campNameSubHead.textContent = campTitle;
 
           // reservation info text
 
