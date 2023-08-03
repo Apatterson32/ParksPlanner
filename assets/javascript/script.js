@@ -30,8 +30,6 @@ var campList = document.getElementById('camp-list');
 //ref to camp details container
 var campDetailsContainer = document.getElementById('camp-details-container');
 
-// var for user checkbox: "do you have a campsite picked out yet?"
-//var needCampHelp = 'false';
 
 // --CAMPGROUND API PARAMETERS--
 var campResultsLimit = 25;
@@ -94,7 +92,7 @@ function getCampDetails(clickedCamp) {
           // --CAMP AMENITIES--
           // ref to amenities in the API object
           var amenities = data.data[i].amenities;
-          console.log(amenities);
+          // console.log(amenities);
 
           // trash notes
           var trashNotesEl = document.getElementById('trash-notes');
@@ -126,13 +124,26 @@ function getCampDetails(clickedCamp) {
           // host availability
           var hostEl = document.getElementById('host-notes');
           var hostNotes = amenities.staffOrVolunteerHostOnSite;
-          console.log(hostNotes);
           hostEl.textContent = hostNotes;
           if (hostEl.textContent === '') {
             hostEl.textContent = 'No information available';
           } 
 
-          // Reservation Info
+          // --RESERVATION INFO--
+          // var reservation =  data.data[i].
+
+          // camp description
+          var campDescriptionEl = document.getElementById('camp-info-text');
+          var campNotes = data.data[i].description;
+          campDescriptionEl.textContent = campNotes;
+          if (campDescriptionEl.textContent === '') {
+            campDescriptionEl.textContent = 'Sorry, no reservation information is available for this campsite.'
+          }
+
+          // camp name on details page
+
+          // reservation info text
+
 
           // regulation
 
