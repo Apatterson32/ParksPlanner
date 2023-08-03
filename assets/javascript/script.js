@@ -29,7 +29,9 @@ var campContainer = document.getElementById('camp-container');
 var campList = document.getElementById('camp-list');
 //ref to camp details container
 var campDetailsContainer = document.getElementById('camp-details-container');
-
+// these containers are hidden unless 'I need help" checkbox is clicked
+campDetailsContainer.style.display = 'none';
+campContainer.style.display = 'none';
 
 // --CAMPGROUND API PARAMETERS--
 var campResultsLimit = 15;
@@ -62,7 +64,7 @@ $(document).on('click', '.button', function(event) {
 // TODO : FUNCTION FOR DISPLAYING CAMPGROUND DETAILS
 function getCampDetails(clickedCamp) {
   console.log('you clicked on this camp: ' + clickedCamp);
-
+  campDetailsContainer.style.display = 'block';
   //clear camp details div
   // campDetailsContainer.innerHTML = '';
 
@@ -269,6 +271,7 @@ findOnMyOwnCheckbox.addEventListener('change', function (event) {
           findHelpCheckbox.checked = false; // Uncheck the other checkbox
       }
       campContainer.style.display = 'none';
+      campDetailsContainer.style.display = 'none';
   } else {
       // "I will find it on my own" checkbox is unchecked
       
