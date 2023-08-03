@@ -101,7 +101,7 @@ function getCampDetails(clickedCamp) {
           var trashNotes = amenities.trashRecyclingCollection;
          
           if (trashNotes === '') {
-            trashNotesEl.textContent = 'Not available.';
+            trashNotesEl.textContent = 'None';
 
           } else {
             trashNotesEl.textContent = trashNotes;
@@ -113,11 +113,30 @@ function getCampDetails(clickedCamp) {
           
           toiletsEl.textContent = toiletNotes;
           if (toiletsEl.textContent === '') {
-            toiletsEl.textContent = 'Not available';
+            toiletsEl.textContent = 'None';
           }
 
-          // Internet
-          
+          // cell reception
+          var receptionEl = document.getElementById('reception-notes');
+          var receptionNotes = amenities.cellPhoneReception;
+          receptionEl.textContent = receptionNotes;
+          if (receptionEl.textContent === '') {
+            receptionEl.textContent = 'No information available';
+          }
+          // host availability
+          var hostEl = document.getElementById('host-notes');
+          var hostNotes = amenities.staffOrVolunteerHostOnSite;
+          console.log(hostNotes);
+          hostEl.textContent = hostNotes;
+          if (hostEl.textContent === '') {
+            hostEl.textContent = 'No information available';
+          } 
+
+          // Reservation Info
+
+          // regulation
+
+          //contacts
 
         }
       }
