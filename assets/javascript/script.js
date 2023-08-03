@@ -32,10 +32,10 @@ var campDetailsContainer = document.getElementById('camp-details-container');
 
 
 // --CAMPGROUND API PARAMETERS--
-var campResultsLimit = 25;
+var campResultsLimit = 15;
 // TO DO: Get park code from user response
 //var parkName = document.getElementById("park-input").value;
-var parkCode = 'care';
+var parkCode = 'dena';
 
 
 function clearCampContent() {
@@ -145,12 +145,27 @@ function getCampDetails(clickedCamp) {
           var campTitle = data.data[i].name;
           campNameSubHead.textContent = campTitle;
 
-          // reservation info text
 
+          // reservation info text below description
+          var campReservationInfoEl = document.getElementById('reservation-notes');
+          var campResNotes = data.data[i].reservationInfo;
+          console.log(campResNotes)
+          campReservationInfoEl.textContent = campResNotes;
+          // to do: if empty, make p el go away
+          //to do: if duplicate paragraph, make it disappear
 
-          // regulation
+          //how to reserve link  OR 
+          var campHowToResEl = document.getElementById('how-to-reserve');
+          var howToResNotes = data.data[i].reservationUrl;
+          campHowToResEl.textContent = howToResNotes;
+          // to do: make link be hyperlink
+          if (campHowToResEl.textContent === '') {
+            campHowToResEl.textContent = 'No reservation URL available. Check the Reservation info above for details.'
+          }
+
 
           //contacts
+
 
         }
       }
