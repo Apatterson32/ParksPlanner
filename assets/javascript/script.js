@@ -149,12 +149,10 @@ function getCampDetails(clickedCamp) {
           // reservation info text below description
           var campReservationInfoEl = document.getElementById('reservation-notes');
           var campResNotes = data.data[i].reservationInfo;
-          console.log(campResNotes)
           campReservationInfoEl.textContent = campResNotes;
-          // to do: if empty, make p el go away
           //to do: if duplicate paragraph, make it disappear
 
-          //how to reserve link  OR 
+          //how to reserve link 
           var campHowToResEl = document.getElementById('how-to-reserve');
           var howToResNotes = data.data[i].reservationUrl;
           campHowToResEl.textContent = howToResNotes;
@@ -162,10 +160,20 @@ function getCampDetails(clickedCamp) {
           if (campHowToResEl.textContent === '') {
             campHowToResEl.textContent = 'No reservation URL available. Check the Reservation info above for details.'
           }
+          campHowToResEl.style.padding = '10px';
 
+          // regulations
+          var campRegulationsEl = document.getElementById('camp-regulations-text');
+          var regulationNotes = data.data[i].regulationsOverview;
+          campRegulationsEl.textContent = regulationNotes;
+          
+          var campRegUrlEl = document.getElementById('regulations-url');
+          var campRegUrl = data.data[i].regulationsurl;
+          campRegUrlEl.textContent = campRegUrl;
 
-          //contacts
-
+          if (campRegulationsEl.textContent === '' && campRegUrlEl.textContent === ''){
+            campRegulationsEl.textContent = 'No regulation information available.'
+          }
 
         }
       }
