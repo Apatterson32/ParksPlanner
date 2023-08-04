@@ -7,7 +7,7 @@ $('#rangestart').calendar({
     startCalendar: $('#rangestart')
   });
 
-$('#pickDates').on('click', showDates);
+$('#pickDates').on('click', getParkCode);
 
 function showDates() {
     var startDate = $('.start').val();
@@ -36,15 +36,36 @@ campContainer.style.display = 'none';
 // --CAMPGROUND API PARAMETERS--
 var campResultsLimit = 15;
 // TO DO: Get park code from user response
-//var parkName = document.getElementById("park-input").value;
-var parkCode = 'dena';
+var parkCode = '';
+function getParkCode() {
+  var parkName = document.getElementById("park-input").value;
+  console.log(parkName);
+  
+  var parkCodeCall = 'https://developer.nps.gov/api/v1/parks?q=' + parkName + '&api_key=' + apiKey;
+  console.log(parkCodeCall);
+  fetch(parkCodeCall)
+    .then(function (response) {
+      if (!response.ok) {
+        // TODO: we can't use alert windows. if something goes wrong with the call we need another way to display it.
+        console.log('api error');
+      } else {
+        return response.json();
+      }
+    })
+    .then(function (data) {
+      console.log(data);
+      parkCode = data;
+    });
+};
+
+
 
 
 function clearCampContent() {
   campList.innerHTML = '';
 }
 
-$(document).on('click', '.button', function(event) {
+$(document).on('click', '.camp-button', function(event) {
   event.preventDefault();
   // ref to clicked arrow's sibling object
   var sibling = $(this).parent().siblings('.content');
@@ -227,7 +248,7 @@ function generateCampList(parkCode, apiKey) {
 
     // div for CAMP DETAILS icon
     var rightFloatDiv = document.createElement('div');
-    rightFloatDiv.className = 'right floated content';
+    rightFloatDiv.className = 'right floated content camp-button';
     listItem.appendChild(rightFloatDiv);
 
     // button
