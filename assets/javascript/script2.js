@@ -16,11 +16,9 @@ function displayDetailsEl() {
         console.log('details off');
     }
 }
+
 window.onload = displayDetailsEl;
-// while (myCampVisible === false) {
-//     myCampContentEl.style.display = 'none';
-//     console.log('details off')
-// }
+
 function getMyCampSiteData () {
     console.log('getMyCampSiteData is exe');
     var savedCampsiteData = JSON.parse(localStorage.getItem('My-Site'));
@@ -97,7 +95,7 @@ function getMyCampSiteData () {
         campRegulationsEl.textContent = 'No regulation information available.'
     }
 
-    
+
 }
 
 // event listener for 'view my site' button
