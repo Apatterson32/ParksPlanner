@@ -55,6 +55,7 @@ var selectedMyCampsite = null;
 
 // API call to retrieve the user's given park code
 function getParkCode() {
+  // TO DO: DIFFERENT REF to park name if possible so user doesn't have to type it perfectly.
   var parkName = document.getElementById("park-input").value;
   console.log(parkName);
   
@@ -246,7 +247,7 @@ function getCampDetails(clickedCamp) {
             var campsiteDataJSON = JSON.stringify(myCampsiteData);
             console.log(campsiteDataJSON);
             // save string to local storage
-            localStorage.setItem(campTitle, campsiteDataJSON);
+            localStorage.setItem('My-Site', campsiteDataJSON);
           })
         }
       }
@@ -288,12 +289,6 @@ function generateCampList(parkCode, apiKey) {
     listItemContent.textContent = data.data[i].name ;
     listItem.appendChild(listItemContent);
     
-    // bathroom
-
-
-    //water
-
-    // trash
 
     // div for CAMP DETAILS icon
     var rightFloatDiv = document.createElement('div');
