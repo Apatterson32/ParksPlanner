@@ -73,7 +73,7 @@ function clearCampContent() {
 $(document).on('click', '.camp-button', function(event) {
   event.preventDefault();
   // ref to clicked arrow's sibling object
-  var sibling = $(this).parent().siblings('.content');
+  var sibling = $(this).parent().siblings('.left');
    //console.log(sibling);
 
   // ref to clicked arrow's respective camp name
@@ -253,12 +253,12 @@ function generateCampList(parkCode, apiKey) {
 
     // div for CAMP DETAILS icon
     var rightFloatDiv = document.createElement('div');
-    rightFloatDiv.className = 'right floated content camp-button';
+    rightFloatDiv.className = 'right floated content';
     listItem.appendChild(rightFloatDiv);
 
     // button
     var makeDetailsBtn = document.createElement('button');
-    makeDetailsBtn.className = 'ui icon button';
+    makeDetailsBtn.className = 'ui icon button camp-button';
     rightFloatDiv.appendChild(makeDetailsBtn);
 
     // arrow 
