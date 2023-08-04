@@ -1,3 +1,19 @@
+// API Key
+var apiKey = '9dNeLq2nvcwlctGtvDnExgSlMHam78mtKPhgrnn9';
+// ref to the entire CAMPGROUND LIST container
+var campContainer = document.getElementById('camp-container');
+// ref to camp listing 
+var campList = document.getElementById('camp-list');
+//ref to camp details container
+var campDetailsContainer = document.getElementById('camp-details-container');
+// these containers are hidden unless 'I need help" checkbox is clicked
+campDetailsContainer.style.display = 'none';
+campContainer.style.display = 'none';
+// --CAMPGROUND API PARAMETERS--
+var campResultsLimit = 15;
+// TO DO: Get park code from user response
+var parkCode = '';
+
 $('#rangestart').calendar({
     type: 'date',
     endCalendar: $('#rangeend')
@@ -7,7 +23,7 @@ $('#rangestart').calendar({
     startCalendar: $('#rangestart')
   });
 
-$('#pickDates').on('click', getParkCode);
+$('#pickDates').on('click', confirmBtn);
 
 function showDates() {
     var startDate = $('.start').val();
@@ -19,28 +35,17 @@ $(document).ready(function(){
   $('.ui.accordion').accordion();
 });
 
-
-// API Key
-var apiKey = '9dNeLq2nvcwlctGtvDnExgSlMHam78mtKPhgrnn9';
-
-// ref to the entire CAMPGROUND LIST container
-var campContainer = document.getElementById('camp-container');
-// ref to camp listing 
-var campList = document.getElementById('camp-list');
-//ref to camp details container
-var campDetailsContainer = document.getElementById('camp-details-container');
-// these containers are hidden unless 'I need help" checkbox is clicked
-campDetailsContainer.style.display = 'none';
-campContainer.style.display = 'none';
+function confirmBtn() {
+  if (findHelpCheckbox.checked) {
+    campContainer.style.display = 'block';
+    getParkCode();
+  }
+}
 
 //init variable for My Camp Site storage
 var selectedMyCampsite = null;
 // TO DO : LOAD IN MY CAMPSITE on iteneratry page
 
-// --CAMPGROUND API PARAMETERS--
-var campResultsLimit = 15;
-// TO DO: Get park code from user response
-var parkCode = 'dena';
 function getParkCode() {
   var parkName = document.getElementById("park-input").value;
   console.log(parkName);
@@ -62,13 +67,11 @@ function getParkCode() {
         if (data.data[i].name === parkName) {
           parkCode = data.data[i].parkCode;
           console.log(parkCode);
+          generateCampList(parkCode, apiKey);
         }
       }
     });
 };
-
-
-
 
 function clearCampContent() {
   campList.innerHTML = '';
@@ -78,7 +81,7 @@ $(document).on('click', '.camp-button', function(event) {
   event.preventDefault();
   // ref to clicked arrow's sibling object
   var sibling = $(this).parent().siblings('.left');
-   //console.log(sibling);
+   console.log(sibling);
 
   // ref to clicked arrow's respective camp name
   var campName = sibling[0].innerHTML;
@@ -91,6 +94,7 @@ $(document).on('click', '.camp-button', function(event) {
 
 function getCampDetails(clickedCamp) {
   console.log('you clicked on this camp: ' + clickedCamp);
+  console.log(parkCode);
   campDetailsContainer.style.display = 'block';
   //clear camp details div
   // campDetailsContainer.innerHTML = '';
@@ -312,8 +316,8 @@ findHelpCheckbox.addEventListener('change', function (event) { // chat gpt assis
       if (findOnMyOwnCheckbox.checked) {
           findOnMyOwnCheckbox.checked = false; // Uncheck the other checkbox
       }
-      campContainer.style.display = 'block';
-      generateCampList(parkCode, apiKey);
+      // campContainer.style.display = 'block';
+      // generateCampList(parkCode, apiKey);
   } else {
       // "I need help finding a campsite" checkbox is unchecked
       
