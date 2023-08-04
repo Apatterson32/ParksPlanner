@@ -69,8 +69,12 @@ html{
     margin-bottom: 10px !important;
 }
 
+.mg-sm{
+    margin: 10px;
+}
+
 .mg-med{
-    margin: 20px;
+    margin: 20px !important;
 }
 
 .pd-sm{
