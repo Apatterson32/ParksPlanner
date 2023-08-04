@@ -21,6 +21,7 @@ html{
     /* background-color: #DDA571 !important; */
     background-color: #f2b95c !important;
     padding: 10px !important;
+    border-radius: 20px !important;
 }
 
 .olive-bckg{
@@ -54,7 +55,7 @@ html{
 }
 
 .mg-tp-sm {
-    margin-top: 10px !important;
+    margin-top: 15px !important;
 }
 
 .mg-tp-med {
