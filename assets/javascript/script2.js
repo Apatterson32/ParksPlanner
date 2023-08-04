@@ -1,3 +1,4 @@
+
 $("#back-btn").on('click', function() {
     window.location.replace('./index.html');
 })
@@ -101,3 +102,4 @@ function getMyCampSiteData () {
 // event listener for 'view my site' button
 $('#view-my-site').on('click', getMyCampSiteData);
 $('#view-my-site').on('click', displayDetailsEl);
+
