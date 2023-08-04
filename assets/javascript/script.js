@@ -27,15 +27,17 @@ var apiKey = '9dNeLq2nvcwlctGtvDnExgSlMHam78mtKPhgrnn9';
 var campContainer = document.getElementById('camp-container');
 // ref to camp listing 
 var campList = document.getElementById('camp-list');
-
-// var for user checkbox: "do you have a campsite picked out yet?"
-//var needCampHelp = 'false';
+//ref to camp details container
+var campDetailsContainer = document.getElementById('camp-details-container');
+// these containers are hidden unless 'I need help" checkbox is clicked
+campDetailsContainer.style.display = 'none';
+campContainer.style.display = 'none';
 
 // --CAMPGROUND API PARAMETERS--
-var campResultsLimit = 25;
+var campResultsLimit = 15;
 // TO DO: Get park code from user response
 //var parkName = document.getElementById("park-input").value;
-var parkCode = 'care';
+var parkCode = 'dena';
 
 
 function clearCampContent() {
@@ -43,20 +45,146 @@ function clearCampContent() {
 }
 
 $(document).on('click', '.button', function(event) {
-  console.log('Event listener is triggered!');
   event.preventDefault();
+  // ref to clicked arrow's sibling object
   var sibling = $(this).parent().siblings('.content');
-  getCampDetails(sibling);
+   //console.log(sibling);
+
+  // ref to clicked arrow's respective camp name
+  var campName = sibling[0].innerHTML;
+  // pass camp name to display camp details function
+  getCampDetails(campName);
   // var textValue = $(this).siblings('.description').val();
-  // localStorage.setItem(key, textValue);
+  
 });
+
+// TODO: make function for displaying/hiding campground details div
 
 
 // TODO : FUNCTION FOR DISPLAYING CAMPGROUND DETAILS
-function getCampDetails(clickedElement){
-  console.log(clickedElement);
-  // more code here
+function getCampDetails(clickedCamp) {
+  console.log('you clicked on this camp: ' + clickedCamp);
+  campDetailsContainer.style.display = 'block';
+  //clear camp details div
+  // campDetailsContainer.innerHTML = '';
+
+  var campDetailsCall = 'https://developer.nps.gov/api/v1/campgrounds?parkCode=' + parkCode + '&api_key=' + apiKey;
+  fetch(campDetailsCall)
+    .then(function (response) {
+      if (!response.ok) {
+        // TODO: we can't use alert windows. if something goes wrong with the call we need another way to display it.
+        console.log('api error');
+      } else {
+        return response.json();
+      }
+    })
+    .then(function (data) {
+      console.log(data);
+
+      // conditional statement to find correct camp name in the data and display it
+      for (let i = 0; i < data.data.length; i++) {
+        // ref to the correct info for corresponding camp
+        var campIndex = data.data[i].name;
+        if (clickedCamp === campIndex) {
+          console.log('this camp is a match for what you clicked: ' + data.data[i].name);
+
+          //display the div when arrow is clicked
+          campDetailsContainer.style.display = 'block';
+
+          // --CAMP AMENITIES--
+          // ref to amenities in the API object
+          var amenities = data.data[i].amenities;
+          // console.log(amenities);
+
+          // trash notes
+          var trashNotesEl = document.getElementById('trash-notes');
+          var trashNotes = amenities.trashRecyclingCollection;
+         
+          if (trashNotes === '') {
+            trashNotesEl.textContent = 'None';
+
+          } else {
+            trashNotesEl.textContent = trashNotes;
+          }
+          
+          // toilets
+          var toiletsEl = document.getElementById('toilet-notes');
+          var toiletNotes = amenities.toilets[0];
+          
+          toiletsEl.textContent = toiletNotes;
+          if (toiletsEl.textContent === '') {
+            toiletsEl.textContent = 'None';
+          }
+
+          // cell reception
+          var receptionEl = document.getElementById('reception-notes');
+          var receptionNotes = amenities.cellPhoneReception;
+          receptionEl.textContent = receptionNotes;
+          if (receptionEl.textContent === '') {
+            receptionEl.textContent = 'No information available';
+          }
+          // host availability
+          var hostEl = document.getElementById('host-notes');
+          var hostNotes = amenities.staffOrVolunteerHostOnSite;
+          hostEl.textContent = hostNotes;
+          if (hostEl.textContent === '') {
+            hostEl.textContent = 'No information available';
+          } 
+
+          // --RESERVATION INFO--
+          // var reservation =  data.data[i].
+
+          // camp description
+          var campDescriptionEl = document.getElementById('camp-info-text');
+          var campNotes = data.data[i].description;
+          campDescriptionEl.textContent = campNotes;
+          if (campDescriptionEl.textContent === '') {
+            campDescriptionEl.textContent = 'Sorry, no reservation information is available for this campsite.'
+          }
+
+          // camp name on details page
+          var campNameSubHead = document.getElementById('camp-detail-name');
+          var campTitle = data.data[i].name;
+          campNameSubHead.textContent = campTitle;
+
+
+          // reservation info text below description
+          var campReservationInfoEl = document.getElementById('reservation-notes');
+          var campResNotes = data.data[i].reservationInfo;
+          campReservationInfoEl.textContent = campResNotes;
+          //to do: if duplicate paragraph, make it disappear
+
+          //how to reserve link 
+          var campHowToResEl = document.getElementById('how-to-reserve');
+          var howToResNotes = data.data[i].reservationUrl;
+          campHowToResEl.textContent = howToResNotes;
+          // to do: make link be hyperlink
+          if (campHowToResEl.textContent === '') {
+            campHowToResEl.textContent = 'No reservation URL available. Check the Reservation info above for details.'
+          }
+          campHowToResEl.style.padding = '10px';
+
+          // regulations
+          var campRegulationsEl = document.getElementById('camp-regulations-text');
+          var regulationNotes = data.data[i].regulationsOverview;
+          campRegulationsEl.textContent = regulationNotes;
+          
+          var campRegUrlEl = document.getElementById('regulations-url');
+          var campRegUrl = data.data[i].regulationsurl;
+          campRegUrlEl.textContent = campRegUrl;
+
+          if (campRegulationsEl.textContent === '' && campRegUrlEl.textContent === ''){
+            campRegulationsEl.textContent = 'No regulation information available.'
+          }
+
+        }
+      }
+    });
+
+  // TO DO: set my campsite to local storage
+  // localStorage.setItem(key, textValue);
 }
+
 
 function generateCampList(parkCode, apiKey) {
   // clear content if nes
@@ -75,8 +203,8 @@ function generateCampList(parkCode, apiKey) {
   }
  })
  .then(function(data){
-  console.log(data);
-  console.log(data.data[0].name); // good
+  //console.log(data);
+  //console.log(data.data[0].name); // good
   // --CAMP LISTINGS--
   for (let i = 0; i < data.data.length; i++) {
     // div class .item
@@ -143,6 +271,7 @@ findOnMyOwnCheckbox.addEventListener('change', function (event) {
           findHelpCheckbox.checked = false; // Uncheck the other checkbox
       }
       campContainer.style.display = 'none';
+      campDetailsContainer.style.display = 'none';
   } else {
       // "I will find it on my own" checkbox is unchecked
       

@@ -91,48 +91,63 @@
 
         <br/>
         
-        <div class="ui container half orange-bckg olv-bord blk-txt">
+        <div id="camp-details-container" class="ui container half orange-bckg olv-bord blk-txt">
 
             <h2>Campground Details</h2>
-            <h3 id="camp-name">Idfk lol</h3>
+            <h3 id="camp-detail-name"></h3>
+            
 
             <div class="ui grid center aligned">
 
                 <div class="four wide column grey-bckg pd-sm mg-med">
                     <h2>Amenities</h2>
                     <div class="ui list">
-                        <div class="item">Trash Collection</div>
-                        <div class="item">Toilets</div>
-                        <div class="item">Internet</div>
-                        <div class="item">Host on site?</div>
-                        <div class="item">Items available for sale here:</div>
+                        <div class="item">
+                            <i class="right triangle icon"></i>
+                            <div class="content">
+                                <div class="header">Trash Collection</div>
+                                <div class="description" id="trash-notes"></div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <i class="right triangle icon"></i>
+                            <div class="content">
+                                <div class="header">Restroom Info</div>
+                                <div class="description" id="toilet-notes"></div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <i class="right triangle icon"></i>
+                            <div class="content">
+                                <div class="header">Cell Reception</div>
+                                <div class="description" id="reception-notes"></div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <i class="right triangle icon"></i>
+                            <div class="content">
+                                <div class="header">Host on site?</div>
+                                <div class="description" id="host-notes"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="ten wide column grey-bckg pd-sm mg-med">
-                    <h2>Reservation Info</h2>
-                    <p>
-                        Lava Point Campground is typically open May through September, as weather allows. 
-                        Situated at 7890 feet above sea level, it is off the Kolob Terrace Road, 25 miles (45 minutes) north of the town of Virgin. 
-                        It takes approximately 1 hour 20 minutes to drive to the campground from the South Entrance of Zion Canyon.
-                    </p>
-                    <h4>
-                        Regulations
-                    </h4>
-                    <p>
-                        Vehicles longer than 19 feet are not permitted on the road to the campground. 
-                        Store your food in a vehicle or a hard-sided lockable container. 
-                        Do not feed wildlife. Do not leave trash unattended. 
-                        Please dispose of trash in dumpsters. 
-                        Lava Point campground cannot be included in the itinerary of any Wilderness backpacking trips. 
-                        If you are planning a backpacking traverse hike (going from Kolob Canyons south and across Zion Canyon) you need to make reservations for each night in designated Wilderness campsites and camp areas.
-                    </p>
-                    <h4>
-                        Contacts
-                    </h4>
-                    <p>
-                        park contacts
-                    </p>
+                    <div id="reservation-div">
+                        <h2>Reservation Info</h2>
+                         <p id="camp-info-text"></p>
+                         <br>
+                         <p id="reservation-notes"></p>
+                         <h4>How to Reserve:</h4>
+                         <p id="how-to-reserve"></p>
+                    </div> 
+                    <div id="regulations-div">     
+                        <h4>Regulations</h4>
+                        <p id="camp-regulations-text"></p>
+                        <br>
+                        <p id="regulations-url"></p>
+                    </div>     
                 </div>
 
                 <button class="ui button olv-btn mg-btm-sm">I have reserved this site, save to My Campsite</button>
