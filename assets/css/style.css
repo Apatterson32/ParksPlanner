@@ -2,9 +2,6 @@ html{
     background-color: #B7C5B7 !important;
 }
 
-.camp-details-btn{
-    
-}
 .off-white{
     color: rgba(255,255,255,.9) !important;
 }
@@ -21,6 +18,7 @@ html{
     /* background-color: #DDA571 !important; */
     background-color: #f2b95c !important;
     padding: 10px !important;
+    border-radius: 20px !important;
 }
 
 .olive-bckg{
@@ -54,7 +52,7 @@ html{
 }
 
 .mg-tp-sm {
-    margin-top: 10px !important;
+    margin-top: 15px !important;
 }
 
 .mg-tp-med {
@@ -69,8 +67,12 @@ html{
     margin-bottom: 10px !important;
 }
 
+.mg-sm{
+    margin: 10px;
+}
+
 .mg-med{
-    margin: 20px;
+    margin: 20px !important;
 }
 
 .pd-sm{

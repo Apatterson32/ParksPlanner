@@ -35,17 +35,25 @@ $(document).ready(function(){
   $('.ui.accordion').accordion();
 });
 
+// When user clicks confirm button, either:
+// Dynamically generate list of campgrounds in their chosen park OR
+// take user to results.html and present all info related to their park
 function confirmBtn() {
   if (findHelpCheckbox.checked) {
     campContainer.style.display = 'block';
     getParkCode();
+  } else {
+    window.location.replace('./results.html');
   }
 }
+
 
 //init variable for My Camp Site storage
 var selectedMyCampsite = null;
 // TO DO : LOAD IN MY CAMPSITE on iteneratry page
 
+
+// API call to retrieve the user's given park code
 function getParkCode() {
   var parkName = document.getElementById("park-input").value;
   console.log(parkName);
@@ -77,6 +85,8 @@ function clearCampContent() {
   campList.innerHTML = '';
 }
 
+// When user clicks on a given campsite's arrow button, dynamically
+// generate container with relevant information
 $(document).on('click', '.camp-button', function(event) {
   event.preventDefault();
   // ref to clicked arrow's sibling object
@@ -310,6 +320,8 @@ function generateCampList(parkCode, apiKey) {
 var findHelpCheckbox = document.getElementById('find-help');
 var findOnMyOwnCheckbox = document.getElementById('find-on-my-own');
 
+
+// Checks if user selected "I need help finding a campsite"
 findHelpCheckbox.addEventListener('change', function (event) { // chat gpt assisted with these two event listeners
   if (event.target.checked) {
       // "I need help finding a campsite" checkbox is checked
@@ -323,7 +335,7 @@ findHelpCheckbox.addEventListener('change', function (event) { // chat gpt assis
       
   }
 });
-
+// Checks if user selected "I will find it on my own"
 findOnMyOwnCheckbox.addEventListener('change', function (event) {
   if (event.target.checked) {
       // "I will find it on my own" checkbox is checked
