@@ -49,17 +49,63 @@
     </div>
 
     <div class="ui container grey-bckg mg-tp-med olv-bord">
-        <div class="ui accordion orange-bckg">
-            <div class="title">
+        <div class="ui one item menu orange-bckg">
+            <a id="view-my-site" class="title">
                 <i class="dropdown icon"></i>
-                My Campsite
-            </div>
-            <div class="content">
-                <div class="ui list transition hidden">
-                    <li class="item">Apples</li>
-                    <li class="item">Oranges</li>
-                    <li class="item">Bananas</li>
+                View My Campsite
+            </a>
+        </div>
+        <div id="my-camp-content" class="ui conatiner center aligned orange-bckg">
+            <div class="four wide column orange-bckg pd-sm mg-med">
+                <h1 id="camp-detail-name"></h1>
+                <h2>Amenities</h2>
+                <div class="ui list">
+                    <div class="item">
+                        <i class="right triangle icon"></i>
+                        <div class="content">
+                            <div class="header">Trash Collection</div>
+                            <div class="description" id="trash-notes"></div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="right triangle icon"></i>
+                        <div class="content">
+                            <div class="header">Restroom Info</div>
+                            <div class="description" id="toilet-notes"></div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="right triangle icon"></i>
+                        <div class="content">
+                            <div class="header">Cell Reception</div>
+                            <div class="description" id="reception-notes"></div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="right triangle icon"></i>
+                        <div class="content">
+                            <div class="header">Host on site?</div>
+                            <div class="description" id="host-notes"></div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="ten wide column orange-bckg pd-sm mg-med">
+                <div id="reservation-div">
+                    <h2>Reservation Info</h2>
+                     <p id="camp-info-text"></p>
+                     <br>
+                     <p id="reservation-notes"></p>
+                     <!-- <h4>How to Reserve:</h4>
+                     <p id="how-to-reserve"></p> -->
+                </div> 
+                <br>
+                <div id="regulations-div">     
+                    <h4>Regulations</h4>
+                    <p id="camp-regulations-text"></p>
+                    <br>
+                    <p id="regulations-url"></p>
+                </div>     
             </div>
         </div>
         <br/>
