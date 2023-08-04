@@ -36,7 +36,7 @@ campContainer.style.display = 'none';
 // --CAMPGROUND API PARAMETERS--
 var campResultsLimit = 15;
 // TO DO: Get park code from user response
-var parkCode = '';
+var parkCode = 'dena';
 function getParkCode() {
   var parkName = document.getElementById("park-input").value;
   console.log(parkName);
@@ -54,7 +54,12 @@ function getParkCode() {
     })
     .then(function (data) {
       console.log(data);
-      parkCode = data;
+      for (let i = 0; i < data.data.length; i++) {
+        if (data.data[i].name === parkName) {
+          parkCode = data.data[i].parkCode;
+          console.log(parkCode);
+        }
+      }
     });
 };
 
