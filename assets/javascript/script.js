@@ -1,11 +1,11 @@
-// $('#rangestart').calendar({
-//     type: 'date',
-//     endCalendar: $('#rangeend')
-//   });
-//   $('#rangeend').calendar({
-//     type: 'date',
-//     startCalendar: $('#rangestart')
-//   });
+$('#rangestart').calendar({
+    type: 'date',
+    endCalendar: $('#rangeend')
+  });
+  $('#rangeend').calendar({
+    type: 'date',
+    startCalendar: $('#rangestart')
+  });
 
 $('#pickDates').on('click', showDates);
 
