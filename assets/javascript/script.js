@@ -33,6 +33,10 @@ var campDetailsContainer = document.getElementById('camp-details-container');
 campDetailsContainer.style.display = 'none';
 campContainer.style.display = 'none';
 
+//init variable for My Camp Site storage
+var selectedMyCampsite = null;
+// TO DO : LOAD IN MY CAMPSITE on iteneratry page
+
 // --CAMPGROUND API PARAMETERS--
 var campResultsLimit = 15;
 // TO DO: Get park code from user response
@@ -84,10 +88,7 @@ $(document).on('click', '.camp-button', function(event) {
   
 });
 
-// TODO: make function for displaying/hiding campground details div
 
-
-// TODO : FUNCTION FOR DISPLAYING CAMPGROUND DETAILS
 function getCampDetails(clickedCamp) {
   console.log('you clicked on this camp: ' + clickedCamp);
   campDetailsContainer.style.display = 'block';
@@ -202,13 +203,42 @@ function getCampDetails(clickedCamp) {
           if (campRegulationsEl.textContent === '' && campRegUrlEl.textContent === ''){
             campRegulationsEl.textContent = 'No regulation information available.'
           }
+          // save and store data 
+          var myCampsiteData = {
+            amenities: amenities,
+            campDescription: campNotes,
+            campTitle: campTitle,
+            campResNotes: campResNotes,
+            howToResNotes: howToResNotes,
+            regulationNotes: regulationNotes,
+            campRegUrl: campRegUrl
+            
+          };
+          
 
+          //event listener for save button
+          var saveButton = document.getElementById('save-button');
+          saveButton.addEventListener('click', function(){
+            // Check if a campsite is already saved
+            if (selectedMyCampsite !== null) {
+              // Remove the previously saved campsite from local storage
+              localStorage.removeItem(selectedMyCampsite);
+            }
+            
+
+            selectedMyCampsite = campTitle;
+
+
+            var campsiteDataJSON = JSON.stringify(myCampsiteData);
+            console.log(campsiteDataJSON);
+            // save string to local storage
+            localStorage.setItem(campTitle, campsiteDataJSON);
+          })
         }
       }
     });
 
-  // TO DO: set my campsite to local storage
-  // localStorage.setItem(key, textValue);
+
 }
 
 
