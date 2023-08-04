@@ -43,7 +43,7 @@ function confirmBtn() {
     campContainer.style.display = 'block';
     getParkCode();
   } else {
-    window.location.replace('./results.html');
+    window.location.assign('./results.html');
   }
 }
 
@@ -238,6 +238,7 @@ function getCampDetails(clickedCamp) {
             if (selectedMyCampsite !== null) {
               // Remove the previously saved campsite from local storage
               localStorage.removeItem(selectedMyCampsite);
+              window.location.assign('./results.html');
             }
             
 
