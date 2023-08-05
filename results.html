@@ -30,9 +30,9 @@
     <div class="ui container pd-lg grey-bckg mg-tp-lg olv-bord" id="weather-section">
         <h2 class="mg-med">Current Weather</h2>
         <div id="weather-data">
-            <p id="weather-info">Weather information will be updated here dynamically</p>
+            <p id="weather-info">Click below for your park's current weather</p>
         </div>
-        <button class="ui button" id="fetch-button">Fetch Weather</button>
+        <button class="ui button" id="fetch-button">National Park Weather</button>
     </div>
 
     <div class="ui container pd-lg grey-bckg mg-tp-lg olv-bord">
@@ -40,10 +40,8 @@
         <div class="ui container orange-bckg">
             <h3>Things To Do</h3>
             <div class="ui list">
-                <li>Go running</li>
-                <li>Go running</li>
-                <li>Go running</li>
-                <li>Go running</li>
+                <p id="p1" draggable="true">Go Running</p>
+                <p id="p1" draggable="true">Go Running</p>
             </div>
         </div>
     </div>
@@ -111,9 +109,14 @@
         <br/>
         <div class="ui container">
             <div class="ui horizontal segments">
-                <div class="ui segment">
+                <div 
+                class="ui segment">
                     <h3>08/03/2023</h3>
-                    <p>Drag and drop items here</p>
+                    <p
+                    id="target"
+                    ondrop="drop_handler(event)"
+                    ondragover="dragover_handler(event)"
+                    ></p>
                 </div>
                 <div class="ui segment">
                     <h3>08/04/2023</h3>
