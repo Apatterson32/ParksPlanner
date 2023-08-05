@@ -40,8 +40,8 @@
         <div class="ui container orange-bckg">
             <h3>Things To Do</h3>
             <div class="ui list">
-                <p id="p1" draggable="true">Go Running</p>
-                <p id="p1" draggable="true">Go Running</p>
+                <p id="p1" class="drag-item" draggable="true" ondragstart="dragstart_handler(event)">Go Running</p>
+                <p id="p2" class="drag-item" draggable="true" ondragstart="dragstart_handler(event)">Go Hiking</p>                
             </div>
         </div>
     </div>
@@ -109,38 +109,33 @@
         <br/>
         <div class="ui container">
             <div class="ui horizontal segments">
-                <div 
-                class="ui segment">
+                <div class="ui segment" ondrop="drop_handler(event, 'target-1')" ondragover="dragover_handler(event)">
                     <h3>08/03/2023</h3>
-                    <p
-                    id="target"
-                    ondrop="drop_handler(event)"
-                    ondragover="dragover_handler(event)"
-                    ></p>
+                    <p id="target-1" class="drop-zone"></p>
                 </div>
-                <div class="ui segment">
+                <div class="ui segment" ondrop="drop_handler(event, 'target-2')" ondragover="dragover_handler(event)">
                     <h3>08/04/2023</h3>
-                    <p>Drag and drop items here</p>
+                    <p id="target-2" class="drop-zone"></p>
                 </div>
-                <div class="ui segment">
+                <div class="ui segment" ondrop="drop_handler(event, 'target-3')" ondragover="dragover_handler(event)">
                     <h3>08/05/2023</h3>
-                    <p>Drag and drop items here</p>
+                    <p id="target-3" class="drop-zone"></p>
                 </div>
-                <div class="ui segment">
+                <div class="ui segment" ondrop="drop_handler(event, 'target-4')" ondragover="dragover_handler(event)">
                     <h3>08/06/2023</h3>
-                    <p>Drag and drop items here</p>
+                    <p id="target-4" class="drop-zone"></p>
                 </div>
-                <div class="ui segment">
+                <div class="ui segment" ondrop="drop_handler(event, 'target-5')" ondragover="dragover_handler(event)">
                     <h3>08/07/2023</h3>
-                    <p>Drag and drop items here</p>
+                    <p id="target-5" class="drop-zone"></p>
                 </div>
-                <div class="ui segment">
+                <div class="ui segment" ondrop="drop_handler(event, 'target-6')" ondragover="dragover_handler(event)">
                     <h3>08/08/2023</h3>
-                    <p>Drag and drop items here</p>
+                    <p id="target-6" class="drop-zone"></p>
                 </div>
-                <div class="ui segment">
+                <div class="ui segment" ondrop="drop_handler(event, 'target-7')" ondragover="dragover_handler(event)">
                     <h3>08/09/2023</h3>
-                    <p>Drag and drop items here</p>
+                    <p id="target-7" class="drop-zone"></p>
                 </div>
             </div>
             <br/>
