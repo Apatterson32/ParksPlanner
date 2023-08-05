@@ -20,7 +20,6 @@ const apiKey = 'ebcf60ba77c2c60649057738c3342155';
             
             const weatherInfo = `${weatherDescription}. Temperature: ${temperature}°C`;
             
-            // Update the HTML with weather information
             const weatherInfoElement = document.getElementById('weather-info');
             weatherInfoElement.textContent = weatherInfo;
         } catch (error) {
@@ -28,11 +27,10 @@ const apiKey = 'ebcf60ba77c2c60649057738c3342155';
         }
     }
 
-    // Get the button element by its ID
+    
 const fetchButton = document.getElementById('fetch-button');
-
-// Add a click event listener to the 
 fetchButton.addEventListener('click', fetchWeather);
+
 
 var myCampContentEl = document.getElementById('my-camp-content');
 
