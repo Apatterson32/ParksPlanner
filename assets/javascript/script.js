@@ -238,7 +238,6 @@ function getCampDetails(clickedCamp) {
             if (selectedMyCampsite !== null) {
               // Remove the previously saved campsite from local storage
               localStorage.removeItem(selectedMyCampsite);
-              window.location.assign('./results.html');
             }
             
 
@@ -249,6 +248,7 @@ function getCampDetails(clickedCamp) {
             console.log(campsiteDataJSON);
             // save string to local storage
             localStorage.setItem('My-Site', campsiteDataJSON);
+            window.location.assign('./results.html');
           })
         }
       }
