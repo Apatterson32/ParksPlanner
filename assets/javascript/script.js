@@ -43,12 +43,19 @@ function confirmBtn() {
     campContainer.style.display = 'block';
     getParkCode();
   } else {
-    window.location.replace('./results.html');
+    window.location.assign('./results.html');
   }
 }
 
+
+//init variable for My Camp Site storage
+var selectedMyCampsite = null;
+// TO DO : LOAD IN MY CAMPSITE on iteneratry page
+
+
 // API call to retrieve the user's given park code
 function getParkCode() {
+  // TO DO: DIFFERENT REF to park name if possible so user doesn't have to type it perfectly.
   var parkName = document.getElementById("park-input").value;
   console.log(parkName);
   
@@ -95,10 +102,7 @@ $(document).on('click', '.camp-button', function(event) {
   
 });
 
-// TODO: make function for displaying/hiding campground details div
 
-
-// TODO : FUNCTION FOR DISPLAYING CAMPGROUND DETAILS
 function getCampDetails(clickedCamp) {
   console.log('you clicked on this camp: ' + clickedCamp);
   console.log(parkCode);
@@ -214,13 +218,43 @@ function getCampDetails(clickedCamp) {
           if (campRegulationsEl.textContent === '' && campRegUrlEl.textContent === ''){
             campRegulationsEl.textContent = 'No regulation information available.'
           }
+          // save and store data 
+          var myCampsiteData = {
+            amenities: amenities,
+            campDescription: campNotes,
+            campTitle: campTitle,
+            campResNotes: campResNotes,
+            howToResNotes: howToResNotes,
+            regulationNotes: regulationNotes,
+            campRegUrl: campRegUrl
+            
+          };
+          
 
+          //event listener for save button
+          var saveButton = document.getElementById('save-button');
+          saveButton.addEventListener('click', function(){
+            // Check if a campsite is already saved
+            if (selectedMyCampsite !== null) {
+              // Remove the previously saved campsite from local storage
+              localStorage.removeItem(selectedMyCampsite);
+              window.location.assign('./results.html');
+            }
+            
+
+            selectedMyCampsite = campTitle;
+
+
+            var campsiteDataJSON = JSON.stringify(myCampsiteData);
+            console.log(campsiteDataJSON);
+            // save string to local storage
+            localStorage.setItem('My-Site', campsiteDataJSON);
+          })
         }
       }
     });
 
-  // TO DO: set my campsite to local storage
-  // localStorage.setItem(key, textValue);
+
 }
 
 
@@ -256,12 +290,6 @@ function generateCampList(parkCode, apiKey) {
     listItemContent.textContent = data.data[i].name ;
     listItem.appendChild(listItemContent);
     
-    // bathroom
-
-
-    //water
-
-    // trash
 
     // div for CAMP DETAILS icon
     var rightFloatDiv = document.createElement('div');
