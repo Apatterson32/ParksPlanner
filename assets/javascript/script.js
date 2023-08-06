@@ -28,12 +28,6 @@ $('#rangestart').calendar({
 
 $('#pickDates').on('click', confirmBtn);
 
-function showDates() {
-    var startDate = $('.start').val();
-    var endDate = $('.end').val();
-    console.log(startDate, endDate);
-}
-
 $(document).ready(function(){
   $('.ui.accordion').accordion();
 });
@@ -42,6 +36,9 @@ $(document).ready(function(){
 // Dynamically generate list of campgrounds in their chosen park OR
 // take user to results.html and present all info related to their park
 function confirmBtn() {
+  var startDate = $('.start').val();
+  var endDate = $('.end').val();
+  console.log(startDate, endDate);
   if (findHelpCheckbox.checked) {
     localStorage.removeItem('Park-Photo-Url');
     getParkCode();
@@ -81,12 +78,13 @@ function getParkCode() {
           // Set parkCode value
           parkCode = data.data[i].parkCode;
           parkCity = data.data[i].addresses[0].city;
+          var parkCitySplit = parkCity.split(' ')[0];
           var parkDescription = data.data[i].description;
           var activitiesJSON = JSON.stringify(data.data[i].activities);
           var parkPhotoUrl = data.data[i].images[1].url;
           // Save all necessary park-specific information to local storage
           localStorage.setItem('activities', activitiesJSON);
-          localStorage.setItem('Park-City', parkCity);
+          localStorage.setItem('Park-City', parkCitySplit);
           localStorage.setItem('Park-Description', parkDescription);
           localStorage.setItem('Park-Photo-Url', parkPhotoUrl);
           generateCampList(parkCode, apiKey);
