@@ -6,8 +6,12 @@ $("#back-btn").on('click', function() {
 // TODO Create a button from index.html that takes the park chosen information to help populate correct location weather with openweathermap api
 const apiKey = 'ebcf60ba77c2c60649057738c3342155';
 
+// City and country code for Springdale, Utah (us)
+const city = 'Springdale';
+const countryCode = 'us';
+
     // URL for fetching weather data
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Springdale,us&appid=${apiKey}&units=metric`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&appid=${apiKey}&units=imperial`;
 
     // Function to fetch weather data and update the HTML
     async function fetchWeather() {
@@ -15,10 +19,11 @@ const apiKey = 'ebcf60ba77c2c60649057738c3342155';
             const response = await fetch(apiUrl);
             const data = await response.json();
             
+            const cityName = data.name;
             const weatherDescription = data.weather[0].description;
-            const temperature = data.main.temp;
+            const temperatureFahrenheit = data.main.temp;
             
-            const weatherInfo = `${weatherDescription}. Temperature: ${temperature}°C`;
+            const weatherInfo = `${cityName}: ${weatherDescription}. Temperature: ${temperatureFahrenheit}°F`;
             
             const weatherInfoElement = document.getElementById('weather-info');
             weatherInfoElement.textContent = weatherInfo;
@@ -29,31 +34,39 @@ const apiKey = 'ebcf60ba77c2c60649057738c3342155';
 
     
 const fetchButton = document.getElementById('fetch-button');
+
 fetchButton.addEventListener('click', fetchWeather);
 
 // Click and drag to drop function
-function dragstart_handler(ev) {
-    // Add the target element's id to the data transfer object
-    ev.dataTransfer.setData("text/plain", ev.target.p1);
+
+// Event handler when dragging starts
+function dragstart_handler(event) {
+  event.dataTransfer.setData("text/plain", event.target.id);
 }
 
-  window.addEventListener("DOMContentLoaded", () => {
-    // Get the element by id
-    const element = document.getElementById("p1");
-    // Add the ondragstart event listener
-    element.addEventListener("dragstart", dragstart_handler);
-  });
+// Event handler when item is dragged over the target
+function dragover_handler(event) {
+  event.preventDefault();
+  event.dataTransfer.dropEffect = "move";
+}
 
-  function dragover_handler(ev) {
-    ev.preventDefault();
-    ev.dataTransfer.dropEffect = "move";
-  }
-  function drop_handler(ev) {
-    ev.preventDefault();
-    // Get the id of the target and add the moved element to the target's DOM
-    const data = ev.dataTransfer.getData("text/plain");
-    ev.target.appendChild(document.getElementById(data));
-  }
+// Event handler when item is dropped onto the target
+function drop_handler(event, targetId) {
+  event.preventDefault();
+  const data = event.dataTransfer.getData("text/plain");
+  const draggedItem = document.getElementById(data);
+  const target = document.getElementById(targetId);
+  target.innerHTML = draggedItem.innerHTML;
+}
+
+// Event handler when item is dropped onto any target
+function drop_handler(event, targetId) {
+  event.preventDefault();
+  const data = event.dataTransfer.getData("text/plain");
+  const draggedItem = document.getElementById(data);
+  const target = document.getElementById(targetId);
+  target.innerHTML = draggedItem.innerHTML;
+}
 
 
   
