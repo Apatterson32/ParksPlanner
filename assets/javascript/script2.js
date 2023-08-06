@@ -39,9 +39,23 @@ fetchButton.addEventListener('click', fetchWeather);
 
 // Click and drag to drop function
 
-// Event handler when dragging starts
-function dragstart_handler(event) {
-  event.dataTransfer.setData("text/plain", event.target.id);
+// Event handler when item is dropped onto any target
+function drop_handler(event, targetId) {
+  event.preventDefault();
+  const data = event.dataTransfer.getData("text/plain");
+  const draggedItem = document.getElementById(data);
+  const target = document.getElementById(targetId);
+
+  // Create a new draggable item and append it to the target
+  const newItem = document.createElement("p");
+  newItem.textContent = draggedItem.textContent;
+  newItem.draggable = true;
+  newItem.classList.add("drag-item");
+  newItem.ondragstart = dragstart_handler;
+  newItem.onclick = function () {
+    target.removeChild(newItem); // Removes the clicked item
+  };
+  target.appendChild(newItem);
 }
 
 // Event handler when item is dragged over the target
@@ -50,26 +64,10 @@ function dragover_handler(event) {
   event.dataTransfer.dropEffect = "move";
 }
 
-// Event handler when item is dropped onto the target
-function drop_handler(event, targetId) {
-  event.preventDefault();
-  const data = event.dataTransfer.getData("text/plain");
-  const draggedItem = document.getElementById(data);
-  const target = document.getElementById(targetId);
-  target.innerHTML = draggedItem.innerHTML;
+// Event handler when dragging starts
+function dragstart_handler(event) {
+  event.dataTransfer.setData("text/plain", event.target.id);
 }
-
-// Event handler when item is dropped onto any target
-function drop_handler(event, targetId) {
-  event.preventDefault();
-  const data = event.dataTransfer.getData("text/plain");
-  const draggedItem = document.getElementById(data);
-  const target = document.getElementById(targetId);
-  target.innerHTML = draggedItem.innerHTML;
-}
-
-
-  
 
 
 var myCampContentEl = document.getElementById('my-camp-content');
