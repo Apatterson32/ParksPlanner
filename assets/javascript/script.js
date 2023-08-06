@@ -13,6 +13,9 @@ campContainer.style.display = 'none';
 var campResultsLimit = 15;
 // TO DO: Get park code from user response
 var parkCode = '';
+// Initialize parkCity variable
+var parkCity = '';
+var parkState = '';
 
 $('#rangestart').calendar({
     type: 'date',
@@ -40,13 +43,15 @@ $(document).ready(function(){
 // take user to results.html and present all info related to their park
 function confirmBtn() {
   if (findHelpCheckbox.checked) {
-    campContainer.style.display = 'block';
+    localStorage.removeItem('Park-Photo-Url');
     getParkCode();
+    campContainer.style.display = 'block';
   } else {
+    // Remove My-Site from local storage to keep campsite container from loading on results page
+    localStorage.removeItem('My-Site');
     window.location.assign('./results.html');
   }
 }
-
 
 //init variable for My Camp Site storage
 var selectedMyCampsite = null;
@@ -57,10 +62,9 @@ var selectedMyCampsite = null;
 function getParkCode() {
   // TO DO: DIFFERENT REF to park name if possible so user doesn't have to type it perfectly.
   var parkName = document.getElementById("park-input").value;
-  console.log(parkName);
+  localStorage.setItem('Park-Name', parkName);
   
   var parkCodeCall = 'https://developer.nps.gov/api/v1/parks?q=' + parkName + '&api_key=' + apiKey;
-  console.log(parkCodeCall);
   fetch(parkCodeCall)
     .then(function (response) {
       if (!response.ok) {
@@ -74,8 +78,17 @@ function getParkCode() {
       console.log(data);
       for (let i = 0; i < data.data.length; i++) {
         if (data.data[i].name === parkName) {
+          // Set parkCode value
           parkCode = data.data[i].parkCode;
-          console.log(parkCode);
+          parkCity = data.data[i].addresses[0].city;
+          var parkDescription = data.data[i].description;
+          var activitiesJSON = JSON.stringify(data.data[i].activities);
+          var parkPhotoUrl = data.data[i].images[1].url;
+          // Save all necessary park-specific information to local storage
+          localStorage.setItem('activities', activitiesJSON);
+          localStorage.setItem('Park-City', parkCity);
+          localStorage.setItem('Park-Description', parkDescription);
+          localStorage.setItem('Park-Photo-Url', parkPhotoUrl);
           generateCampList(parkCode, apiKey);
         }
       }
@@ -338,6 +351,8 @@ findOnMyOwnCheckbox.addEventListener('change', function (event) {
       if (findHelpCheckbox.checked) {
           findHelpCheckbox.checked = false; // Uncheck the other checkbox
       }
+      localStorage.removeItem('Park-Photo-Url');
+      getParkCode();
       campContainer.style.display = 'none';
       campDetailsContainer.style.display = 'none';
   } else {
