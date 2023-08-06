@@ -1,13 +1,15 @@
-$("#back-btn").on('click', function() {
-    window.location.replace('./index.html');
-})
+const apiKey = 'ebcf60ba77c2c60649057738c3342155';
+const activities = JSON.parse(localStorage.getItem('activities'));
+console.log(activities);
+var headPhoto = document.getElementById('head-photo');
+headPhoto.src = localStorage.getItem('Park-Photo-Url');
 
 // This code below will call for current weather data in Springdale Utah aka Zion
 // TODO Create a button from index.html that takes the park chosen information to help populate correct location weather with openweathermap api
-const apiKey = 'ebcf60ba77c2c60649057738c3342155';
 
 // City and country code for Springdale, Utah (us)
-const city = 'Springdale';
+const city = localStorage.getItem('Park-City');
+const state = localStorage.getItem('Park-State');
 const countryCode = 'us';
 
     // URL for fetching weather data
@@ -36,6 +38,27 @@ const countryCode = 'us';
 const fetchButton = document.getElementById('fetch-button');
 
 fetchButton.addEventListener('click', fetchWeather);
+
+// Function to populate Things To Do list for park
+window.onload = populateThingsToDo();
+
+function populateThingsToDo() {
+    var parkNameEl = document.getElementById('park-name');
+    var parkDescriptionEl = document.getElementById('park-description');
+    parkNameEl.innerText = localStorage.getItem('Park-Name') + ' National Park';
+    parkDescriptionEl.innerText = localStorage.getItem('Park-Description');
+    for (let i = 0; i < activities.length; i++) {
+        var activitiesList = document.getElementById('activities-list');
+        var newActivity = activities[i].name;
+        var newItem = document.createElement("p");
+        newItem.id = 'p' + i;
+        newItem.classList.add('drag-item');
+        newItem.draggable = true;
+        newItem.setAttribute('ondragstart', 'dragstart_handler(event)');
+        newItem.textContent = newActivity;
+        activitiesList.appendChild(newItem);
+    }
+}
 
 // Click and drag to drop function
 

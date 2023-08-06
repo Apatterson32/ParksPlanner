@@ -27,6 +27,7 @@ html{
 
 .grey-bckg{
     background-color: #D9D9D9 !important;
+    border-radius: 20px !important;
 }
 
 .white-bckg{
@@ -90,6 +91,10 @@ html{
     margin-right: 10px !important;
 }
 
+.w-forty {
+    width: 40% !important;
+}
+
 .cropped-img{
     width: 100vw;
     height: 200px;
@@ -127,7 +132,8 @@ html{
     color: #555;
 }
 
-
-
-
-
+.inline {
+    display: inline-flex !important;
+    text-align: center !important;
+    align-items: center !important;
+}

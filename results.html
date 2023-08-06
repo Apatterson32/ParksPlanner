@@ -16,38 +16,69 @@
     <div class="ui inverted vertical masthead segment olive-bckg">
         <div class="ui container">
             <div class="ui large secondary inverted pointing menu no-border">
-                <button class="ui icon button mg-med" id="back-btn">
-                    <i class="left arrow icon"></i>
-                </button>
                 <img src="./assets/images/ParksPlanner-logo-icon.png" style="height: 100px; width: auto;">
             </div>
         </div>
     </div>
 
-    <img src="./assets/images/ParksPlanner-logo-icon.png" class="cropped-img mg-tp-sm">
+    <img id="head-photo" src="./assets/images/ParksPlanner-logo-icon.png" class="cropped-img mg-tp-sm">
 
 
-    <div class="ui container pd-lg grey-bckg mg-tp-lg olv-bord" id="weather-section">
-        <h2 class="mg-med">Current Weather</h2>
+    <div class="ui container pd-lg grey-bckg mg-tp-lg" id="weather-section">
+        <h2>Current Weather</h2>
         <div id="weather-data">
             <p id="weather-info">Click below for your park's current weather</p>
         </div>
         <button class="ui button" id="fetch-button">National Park Weather</button>
-        <a class="ui button" href="https://weather.com/weather/tenday/l/Springdale+UT?canonicalCityId=4bd6abffdbcb41cfe4e2184c240daeba1b899882ded6c4b4d8ece7b2b4d18a46" target="_blank">Future Forecast</a>
+        <a class="ui button" href="https://weather.com/weather/tenday/l/Springdale+UT?canonicalCityId=4bd6abffdbcb41cfe4e2184c240daeba1b899882ded6c4b4d8ece7b2b4d18a46" target="_blank" id="future-forecast">Future Forecast</a>
     </div>
 
-    <div class="ui container pd-lg grey-bckg mg-tp-lg olv-bord">
-        <h2 class="mg-med">Park Description Goes Here</h2>
-        <div class="ui container orange-bckg">
-            <h3>Things To Do</h3>
-            <div class="ui list">
-                <p id="p1" class="drag-item" draggable="true" ondragstart="dragstart_handler(event)">Go Running</p>
-                <p id="p2" class="drag-item" draggable="true" ondragstart="dragstart_handler(event)">Go Hiking</p>                
+    <div class="ui container pd-lg grey-bckg mg-tp-lg" style="text-align: center;">
+        
+        <h2 id="park-name"></h2>
+        <h3 id="park-description"></h3>
+        <div class="ui container orange-bckg inline">
+            <div class="ui list w-forty" id="activities-list">  
+                <h3>Things To Do</h3>
+                <h4>(Drag and drop activities into your itinerary)</h4>          
             </div>
+            <div class="ui container w-forty">
+                <div class="ui vertical segments">
+                    <div class="ui segment" ondrop="drop_handler(event, 'target-1')" ondragover="dragover_handler(event)">
+                        <h3>08/03/2023</h3>
+                        <p id="target-1" class="drop-zone"></p>
+                    </div>
+                    <div class="ui segment" ondrop="drop_handler(event, 'target-2')" ondragover="dragover_handler(event)">
+                        <h3>08/04/2023</h3>
+                        <p id="target-2" class="drop-zone"></p>
+                    </div>
+                    <div class="ui segment" ondrop="drop_handler(event, 'target-3')" ondragover="dragover_handler(event)">
+                        <h3>08/05/2023</h3>
+                        <p id="target-3" class="drop-zone"></p>
+                    </div>
+                    <div class="ui segment" ondrop="drop_handler(event, 'target-4')" ondragover="dragover_handler(event)">
+                        <h3>08/06/2023</h3>
+                        <p id="target-4" class="drop-zone"></p>
+                    </div>
+                    <div class="ui segment" ondrop="drop_handler(event, 'target-5')" ondragover="dragover_handler(event)">
+                        <h3>08/07/2023</h3>
+                        <p id="target-5" class="drop-zone"></p>
+                    </div>
+                    <div class="ui segment" ondrop="drop_handler(event, 'target-6')" ondragover="dragover_handler(event)">
+                        <h3>08/08/2023</h3>
+                        <p id="target-6" class="drop-zone"></p>
+                    </div>
+                    <div class="ui segment" ondrop="drop_handler(event, 'target-7')" ondragover="dragover_handler(event)">
+                        <h3>08/09/2023</h3>
+                        <p id="target-7" class="drop-zone"></p>
+                    </div>
+                </div>
+        </div>
+            <br/>
         </div>
     </div>
 
-    <div class="ui container grey-bckg mg-tp-med olv-bord">
+    <div class="ui container grey-bckg mg-tp-med">
         <div class="ui one item menu orange-bckg">
             <a id="view-my-site" class="title">
                 <i class="dropdown icon"></i>
@@ -108,39 +139,6 @@
             </div>
         </div>
         <br/>
-        <div class="ui container">
-            <div class="ui horizontal segments">
-                <div class="ui segment" ondrop="drop_handler(event, 'target-1')" ondragover="dragover_handler(event)">
-                    <h3>08/03/2023</h3>
-                    <p id="target-1" class="drop-zone"></p>
-                </div>
-                <div class="ui segment" ondrop="drop_handler(event, 'target-2')" ondragover="dragover_handler(event)">
-                    <h3>08/04/2023</h3>
-                    <p id="target-2" class="drop-zone"></p>
-                </div>
-                <div class="ui segment" ondrop="drop_handler(event, 'target-3')" ondragover="dragover_handler(event)">
-                    <h3>08/05/2023</h3>
-                    <p id="target-3" class="drop-zone"></p>
-                </div>
-                <div class="ui segment" ondrop="drop_handler(event, 'target-4')" ondragover="dragover_handler(event)">
-                    <h3>08/06/2023</h3>
-                    <p id="target-4" class="drop-zone"></p>
-                </div>
-                <div class="ui segment" ondrop="drop_handler(event, 'target-5')" ondragover="dragover_handler(event)">
-                    <h3>08/07/2023</h3>
-                    <p id="target-5" class="drop-zone"></p>
-                </div>
-                <div class="ui segment" ondrop="drop_handler(event, 'target-6')" ondragover="dragover_handler(event)">
-                    <h3>08/08/2023</h3>
-                    <p id="target-6" class="drop-zone"></p>
-                </div>
-                <div class="ui segment" ondrop="drop_handler(event, 'target-7')" ondragover="dragover_handler(event)">
-                    <h3>08/09/2023</h3>
-                    <p id="target-7" class="drop-zone"></p>
-                </div>
-            </div>
-            <br/>
-        </div>
     </div>
 
     <script src="./assets/javascript/script2.js"></script>
