@@ -102,6 +102,10 @@ html{
     overflow: hidden;
 }
 
+.txt-oflow {
+    word-wrap: break-word;
+}
+
 #weather-section {
     text-align: center;
     margin: 50px auto;
@@ -135,5 +139,4 @@ html{
 .inline {
     display: inline-flex !important;
     text-align: center !important;
-    align-items: center !important;
 }
