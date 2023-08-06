@@ -96,3 +96,38 @@ html{
     object-fit: cover;
     overflow: hidden;
 }
+
+#weather-section {
+    text-align: center;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    width: 80%;
+    max-width: 400px;
+}
+
+/* Style the weather info text */
+#weather-info {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #333;
+}
+
+/* Style the fetch button */
+#fetch-button {
+    margin-top: 20px;
+}
+
+/* Additional styling for the weather data */
+.weather-data {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #555;
+}
+
+
+
+
+
