@@ -47,7 +47,6 @@ function confirmBtn() {
     campContainer.style.display = 'block';
   } else {
     // Remove My-Site from local storage to keep campsite container from loading on results page
-    getParkCode();
     localStorage.removeItem('My-Site');
     window.location.assign('./results.html');
   }
@@ -60,7 +59,6 @@ var selectedMyCampsite = null;
 
 // API call to retrieve the user's given park code
 function getParkCode() {
-  console.log('here');
   // TO DO: DIFFERENT REF to park name if possible so user doesn't have to type it perfectly.
   var parkName = document.getElementById("park-input").value;
   localStorage.setItem('Park-Name', parkName);
@@ -78,7 +76,7 @@ function getParkCode() {
     .then(function (data) {
       console.log(data);
       for (let i = 0; i < data.data.length; i++) {
-        if (data.data[i].fullName === parkName) {
+        if (data.data[i].name === parkName) {
           // Set parkCode value
           parkCode = data.data[i].parkCode;
           parkCity = data.data[i].addresses[0].city;
