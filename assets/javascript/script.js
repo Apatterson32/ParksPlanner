@@ -36,11 +36,9 @@ $(document).ready(function(){
 // Dynamically generate list of campgrounds in their chosen park OR
 // take user to results.html and present all info related to their park
 function confirmBtn() {
-  var startDate = new Date($('.start').val());
-  var endDate = new Date($('.end').val());
+  var startDate = $('.start').val();
+  var endDate = $('.end').val();
   console.log(startDate, endDate);
-  localStorage.setItem('start', startDate);
-  localStorage.setItem('end', endDate);
   if (findHelpCheckbox.checked) {
     localStorage.removeItem('Park-Photo-Url');
     getParkCode();
