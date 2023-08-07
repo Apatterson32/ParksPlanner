@@ -3,31 +3,6 @@ const activities = JSON.parse(localStorage.getItem('activities'));
 console.log(activities);
 var headPhoto = document.getElementById('head-photo');
 headPhoto.src = localStorage.getItem('Park-Photo-Url');
-var startDate = new Date(localStorage.getItem('start'));
-var endDate = new Date(localStorage.getItem('end'));
-
-
-// Function that formats dates for dateArray in getDatesBetween
-function formatDate(date) {
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const year = String(date.getFullYear()).slice(-2);
-  
-    return `${month}/${day}/${year}`;
-  }
-
-// Initialize and store an array for user's chosen trip dates
-function getDatesBetween(start, end) {
-    const dateArray = [];
-    let currentDate = new Date(startDate);
-
-    while (currentDate <= endDate) {
-        dateArray.push(formatDate(currentDate));
-        currentDate.setDate(currentDate.getDate() + 1);
-    }
-    console.log(dateArray)
-    return dateArray;
-    };
 
 // This code below will call for current weather data in Springdale Utah aka Zion
 // TODO Create a button from index.html that takes the park chosen information to help populate correct location weather with openweathermap api
@@ -42,7 +17,6 @@ const countryCode = 'us';
 
     // Function to fetch weather data and update the HTML
     async function fetchWeather() {
-        getDatesBetween(startDate, endDate);
         try {
             const response = await fetch(apiUrl);
             const data = await response.json();
