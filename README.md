@@ -23,3 +23,6 @@ For the itinerary date range selector we found this example code that runs off o
 
 ## Working URL
 https://leucisticboi.github.io/ParksPlanner/
+
+## Screenshot
+![Screenshot of finished project](./assets/images/ParksPlanner.png)
