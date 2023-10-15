@@ -140,3 +140,7 @@ html{
     display: inline-flex !important;
     text-align: center !important;
 }
+
+#park-input::placeholder {
+    color: gray;
+}
